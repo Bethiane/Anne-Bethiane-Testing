@@ -1,9 +1,8 @@
 module.exports = (mongoose) => {
     var schema = mongoose.Schema(
         {
-            id: String,
-            dateExp : Date,
-            status: String,
+            meterNumber: Number,
+            amount:Number
             
         },
         { timestamps: true }

@@ -1,18 +1,36 @@
-import { TestBed } from '@angular/core/testing';
+import { APP_BASE_HREF } from '@angular/common';
+import { async, TestBed } from '@angular/core/testing';
+import { Routes, RouterModule } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
+import { BuyElectricityComponent } from './components/buy-electricity/buy-electricity.component';
+import { HomeComponent } from './components/home/home.component';
+import { ViewElectricityStatsComponent } from './components/view-electricity-stats/view-electricity-stats.component';
 
 describe('AppComponent', () => {
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule
-      ],
+  const routes: Routes =[
+    {path: 'home', component:HomeComponent},
+    {path: 'view-electricity', component:ViewElectricityStatsComponent},
+    {path: 'buy-electricity', component:BuyElectricityComponent},
+    {path: '', redirectTo: '/home', pathMatch:'full'}
+  ];
+  beforeEach(async (() => {
+    TestBed.configureTestingModule({
       declarations: [
-        AppComponent
+        AppComponent,
+        HomeComponent,
+        ViewElectricityStatsComponent,
+        BuyElectricityComponent
       ],
-    }).compileComponents();
-  });
+      imports:[
+        RouterModule.forRoot(routes)
+      ],
+      providers:[
+        { provide: APP_BASE_HREF, useValue: '/' }
+      ]
+    }).compileComponents();    
+  }));
+
 
   it('should create the app', () => {
     const fixture = TestBed.createComponent(AppComponent);
@@ -33,3 +51,6 @@ describe('AppComponent', () => {
     expect(compiled.querySelector('.content span')?.textContent).toContain('frontend app is running!');
   });
 });
+
+
+  

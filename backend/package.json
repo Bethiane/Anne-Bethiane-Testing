@@ -4,8 +4,9 @@
   "description": "Electricity Selling App with Node.js",
   "main": "server.js",
   "scripts": {
-    "serve": "nodemon server.js",
-    "test": "jest"
+    "start": "nodemon --exec babel-node src/index.js",
+    "test": "jest --config ./jest.config.json",
+    "test:watch": "npm run test -- --watch"
   },
   "keywords": [
     "nodejs",
@@ -25,5 +26,6 @@
   "devDependencies": {
     "jest": "^27.5.1"
   }
+  
 }
 
