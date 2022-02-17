@@ -49,7 +49,7 @@ npm test
 ### Run the app
 
 ```
-cd backend
+cd frontend
 ng serve --open
 
 ```
