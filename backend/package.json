@@ -1,11 +1,11 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "description": "RFID with Node.js",
+  "description": "Electricity Selling App with Node.js",
   "main": "server.js",
   "scripts": {
     "serve": "nodemon server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "keywords": [
     "nodejs",
@@ -21,5 +21,9 @@
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "mongoose": "^5.12.7"
+  },
+  "devDependencies": {
+    "jest": "^27.5.1"
   }
 }
+
