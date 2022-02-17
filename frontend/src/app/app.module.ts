@@ -5,12 +5,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BuyElectricityComponent } from './components/buy-electricity/buy-electricity.component';
 import { ViewElectricityStatsComponent } from './components/view-electricity-stats/view-electricity-stats.component';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     BuyElectricityComponent,
-    ViewElectricityStatsComponent
+    ViewElectricityStatsComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

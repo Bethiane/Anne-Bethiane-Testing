@@ -1,15 +1,14 @@
-module.exports = app => {
-   
-    const transaction = require("../controllers/transaction.controller");
+module.exports = (app) => {
+    const transactions = require("../controllers/transaction.controller");
 
     var router = require("express").Router();
 
-    router.post("/", transaction.createTransaction);
+    router.post("/", transactions.create);
 
-    router.get("/", transaction.findAllTransaction);
+    router.get("/", transactions.findAll);
 
-    router.get("/:id",transaction.findOneTransaction);
+    router.get("/:id", transactions.findOne);
 
-
-    app.use('/api/transaction',router);
-}
+    
+    app.use("/api/transactions", router);
+};

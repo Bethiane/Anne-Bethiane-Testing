@@ -27,7 +27,7 @@ app.use((req, res, next) => {
 
 // simple route
 app.get("/", (req, res) => {
-  res.json({ message: "Welcome RFID backend." });
+  res.json({ message: "Welcome Electricity Selling  backend." });
 });
 
 
@@ -45,7 +45,6 @@ db.mongoose
     process.exit();
   });
 
-require("./routes/card.routes")(app);
 require("./routes/transaction.routes")(app);
 
 // set port, listen for requests

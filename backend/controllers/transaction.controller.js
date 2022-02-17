@@ -1,74 +1,63 @@
-const db = require("../models")
-const {Transaction} = require('../models/transaction.model')
-const {Card} = require('../models/card.model')
+const db = require("../models");
+const Transaction = db.transactions;
 
-exports.createTransaction = async (req,res) => {
-   
-    if(!req.body.UUID){
-        res.status(400).send({ message:"No card Id"});
+
+exports.create = (req, res) => {
+    if (!req.body.money&& !req.body.meterNumber) {
+        res.status(400).send({ message: "Cannot be empty!" });
         return;
     }
-    const card = await Card.findOne({UUID:req.body.UUID})
 
-    if(!card)
-    return res.status(401).json({error:"Card not found"})
-    card.balance -= +(req.body.transport_fare)
-
-    card.save()
-
-   const transaction = new Transaction({
-    UUID: req.body.UUID,
-    balance: card.balance,
-    transport_fare: req.body.transport_fare,
-    published: req.body.published ? req.body.published : false});
-
-        transaction
-        .save(transaction)
-        .then(data =>{
-            res.send(data);
+    Transaction.create({
+        id: req.body.id,
+        money: req.body.money,
+        meter: req.body.meter })
+        .then((data) => {
+            res.status(201).send(data);
         })
-        .catch(err =>{
+        .catch((err) => {
             res.status(500).send({
                 message:
-                err.message || "Error occured"
+                    err.message ||
+                    "Some error occurred",
             });
         });
-    
-    };
-    
-    
-exports.findAllTransaction = (req,res) => {
-    const UUID = req.query.UUID;
-    var condition = UUID ? { UUID: { $regex: new RegExp(UUID), $options: "i"} } :{};
-
-Transaction.find(condition)
-   .then(data => {
-       res.send(data);
-   })
-   .catch(err =>{
-       res.status(500).send({
-         message:
-            err.message || "Some error occured"
-       });
-   });
-
 };
 
-exports.findOneTransaction = (req,res) => {
+exports.findAll = (req, res) => {
 
+    Transaction.find()
+        .then((data) => {
+            if (data.length > 0) {
+                res.status(200).send(data);
+            } else {
+                res.status(404).send("Not Found");
+            }
+        })
+        .catch((err) => {
+            res.status(500).json({
+                message:
+                    err.message ||
+                    "Some error occurred",
+            });
+        });
+};
+
+
+exports.findOne = (req, res) => {
     const id = req.params.id;
 
     Transaction.findById(id)
-      .then(data => {
-          if(!data)
-           res.status(400).send({ message: "Not found with id " + id});
-          else res.send(data);
-      })
-      .catch(err => {
-          res
-             .status(500)
-             .send({ message: "Error retrieving with id=" +id});
-      });
-      
-
+        .then((data) => {
+            if (!data)
+                res.status(404).send({
+                    message: "Not found",
+                });
+            else res.send(data);
+        })
+        .catch((err) => {
+            res.status(500).send({
+                message: "Error retrieving transaction with id=" + id,
+            });
+        });
 };

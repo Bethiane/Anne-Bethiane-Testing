@@ -1,10 +1,10 @@
 const mongoose = require('mongoose')
-module.exports.Card = mongoose.model(
-      "card",
+module.exports.Electricity = mongoose.model(
+      "electricity",
       mongoose.Schema(
         {
           owner: String,
-          UUID: {
+          meter: {
             type: String,
             unique: true
           },
