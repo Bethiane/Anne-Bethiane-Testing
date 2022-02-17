@@ -24,7 +24,7 @@ To get the app up and running, run:
 npm start
 
 ```
-### Running the app
+### Running the tests
 
 Install jest before anything 
 
@@ -40,7 +40,7 @@ npm test
 
 ```
 
-## Backend
+## Frontend
 
 Install and configure Angular Js
 
@@ -56,5 +56,17 @@ cd backend
 ng serve --open
 
 ```
+
+### Running the tests
+
+```
+ng test
+
+```
+
+The thing that I am still working on and learning how to use it is Karma. If you clone the project, you will find it. 
+
+The use of Karma made things easy. Go to karma.conf.js
+
 
 ### Enjoy
