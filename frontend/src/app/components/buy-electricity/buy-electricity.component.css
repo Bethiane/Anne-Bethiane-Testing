@@ -1,0 +1,22 @@
+.form-control {
+    /* border: 0;
+    box-shadow: none;
+    border-bottom: 1px solid rgb(175, 175, 175); */
+    padding: 20px;
+    font-family: Poppins;
+  
+}
+
+.form-control input{
+    width: 100px !important;
+}
+
+.register{
+font-style: normal;
+font-weight: bold;
+font-size:25px;
+}
+
+form{
+    height: 400px;
+}
